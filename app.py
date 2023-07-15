@@ -18,13 +18,13 @@ def upload_image():
     image_file=request.files['file']
     degree=int(request.form['text'])
     filename=secure_filename(image_file.filename)
-    image_file.save(os.path.join('static/','filename'))
+    image_file.save(os.path.join('static/',filename))
     image=Image.open(image_file)
     image_rotation_degree=image.rotate(degree)
     image_rotation_degree.save(os.path.join('static/','rotated_image.jpg'))
     img_rotate='rotated_image.jpg'
 
-    return render_template('upload.html',filename=filename(img_rotate))
+    return render_template('upload.html',filename=img_rotate)
 
 
 
